@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	The anagrams of <Strong> ${word} </Strong> are: ${result}
+	The anagrams of <Strong> ${word} </Strong> are: 
+	<br><br>
+	${result}
 </body>
 </html>

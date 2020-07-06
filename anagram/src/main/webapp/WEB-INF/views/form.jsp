@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form method="post">
-		Word: <input type="text" name="word"/>
+		Please enter a word: <input type="text" name="word"/>
 		<input type="submit">
 	</form>
 </body>
