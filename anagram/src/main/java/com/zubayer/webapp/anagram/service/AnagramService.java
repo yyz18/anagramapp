@@ -17,8 +17,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
-//import com.zubayer.webapp.anagram.model.AnagramModel;
-
 @Service
 public class AnagramService {
 	
@@ -52,23 +50,8 @@ public class AnagramService {
        
         
         List<String> results = new ArrayList<String>();
-        
-        //Find all permutations of the word
-        char[] chars = word.toCharArray();
-        results.add(new String("" + chars[0]));
-        for(int j=1; j<chars.length; j++) {
-            char c = chars[j];
-            int cur_size = results.size();
-            //create new permutations combing char 'c' with each of the existing permutations
-            for(int i=cur_size-1; i>=0; i--) {
-                String str = results.remove(i);
-                for(int l=0; l<=str.length(); l++) {
-                	
-                	if(!results.contains(str.substring(0,l) + c + str.substring(l)))
-                		results.add(str.substring(0,l) + c + str.substring(l));
-                }
-            }
-        }
+
+        results = permutation(word);
         
         //Remove the word itself from permutations list
         results.remove(word);
@@ -85,7 +68,46 @@ public class AnagramService {
         	anagramStr = anagramStr + " " + key;
         	
         }
-
-        return anagramStr;			
+        
+        if(anagramStr.length()<1)
+        	return "Sorry, no anagram is found.";
+        else 
+        	return anagramStr;			
+	}
+	
+	//return  the list of permutations
+	public static ArrayList<String> permutation(String s) {
+	    // The result
+	    ArrayList<String> res = new ArrayList<String>();
+	    // If input string's length is 1, return {s}
+	    if (s.length() == 1) {
+	        res.add(s);
+	    } else if (s.length() > 1) {
+	        int lastIndex = s.length() - 1;
+	        // Find out the last character
+	        String last = s.substring(lastIndex);
+	        // Rest of the string
+	        String rest = s.substring(0, lastIndex);
+	        // Perform permutation on the rest string and
+	        // merge with the last character
+	        res = merge(permutation(rest), last);
+	    }
+	    return res;
+	}
+	
+	//return a merged list
+	public static ArrayList<String> merge(ArrayList<String> list, String c) {
+	    ArrayList<String> res = new ArrayList<>();
+	    // Loop through all the string in the list
+	    for (String s : list) {
+	        // For each string, insert the last character to all possible positions
+	        // and add them to the new list
+	        for (int i = 0; i <= s.length(); ++i) {
+	            String ps = new StringBuffer(s).insert(i, c).toString();
+	            if(!res.contains(ps))
+	            	res.add(ps);
+	        }
+	    }
+	    return res;
 	}
 }
