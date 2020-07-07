@@ -16,16 +16,23 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AnagramService {
+	
+	static List<String> permutationWords = new ArrayList<String>();
 
 	public List<String> findAnagrams(String word) throws Exception {
+		
+		//Empty anagrams list
+		permutationWords.clear();
 
 		Map<String, String> map = new HashMap<String, String>();
 
+		//Read in a local dictionary of English words
 		Resource resource = new ClassPathResource("static/american-english.txt");
 		InputStream inputStream = resource.getInputStream();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
+		//Create a map of English words
 		try {
 			while (br.readLine() != null) {
 				map.put(br.readLine(), null);
@@ -34,15 +41,14 @@ public class AnagramService {
 			e.printStackTrace();
 		}
 
-		// handle uppercase/lowercase
-		List<String> results = new ArrayList<String>();
+		//Find all permutations of the word
+		permutation("", word);
+		permutationWords.remove(word);
 
-		results = permutation(word);
-		results.remove(word);
-
-		List<String> anagrams = new ArrayList<String>();
-
-		for (String key : results) {
+		//Check if the permutation word exists in the English word map
+		//If the word exists add it to anagarms list
+		List<String> anagrams = new ArrayList<String>();		
+		for (String key : permutationWords) {
 			if (map.containsKey(key))
 				anagrams.add(key);
 		}
@@ -50,38 +56,17 @@ public class AnagramService {
         return anagrams.size() < 1 ? Arrays.asList("Sorry, no anagram is found") : anagrams;
 	}
 
-	// return the list of permutations
-	public static ArrayList<String> permutation(String s) {
-		ArrayList<String> res = new ArrayList<String>();
-		// If input string's length is 1, return {s}
-		if (s.length() == 1) {
-			res.add(s);
-		} else if (s.length() > 1) {
-			int lastIndex = s.length() - 1;
-			// Find out the last character
-			String last = s.substring(lastIndex);
-			// Rest of the string
-			String rest = s.substring(0, lastIndex);
-			// Perform permutation on the rest string and
-			// merge with the last character
-			res = merge(permutation(rest), last);
-		}
-		return res;
-	}
-
-	// return a merged list
-	public static ArrayList<String> merge(ArrayList<String> list, String c) {
-		ArrayList<String> res = new ArrayList<>();
-		// Loop through all the string in the list
-		for (String s : list) {
-			// For each string, insert the last character to all possible positions
-			// and add them to the new list
-			for (int i = 0; i <= s.length(); ++i) {
-				String ps = new StringBuffer(s).insert(i, c).toString();
-				if (!res.contains(ps))
-					res.add(ps);
-			}
-		}
-		return res;
+	
+	//Return all permutations of a given string
+	static void permutation(String prefix, String str) {
+	    int n = str.length();
+	    if (n == 0) {
+	    	if (!permutationWords.contains(prefix))
+	    	permutationWords.add(prefix);
+	    }
+	    else {
+	        for (int i = 0; i < n; i++)
+	            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+	    }
 	}
 }
