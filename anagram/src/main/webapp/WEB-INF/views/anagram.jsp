@@ -10,8 +10,7 @@
 	<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-		<br><br>
+	<div class="container" style="width: 500px;padding-top: 100px">
 					
 		<table class="table table-striped">
 				
