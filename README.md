@@ -1,6 +1,6 @@
 # anagramapp
 
-A web app for serching anagrams for a given word. It uses an embedded English dictionary to lookup all possible anagrams of the word.
+A web app for serching anagrams for a given word. It uses an embedded English dictionary to lookup all possible anagrams of the word. The architecture diagram is below.
 
 <br>
 
