@@ -13,7 +13,7 @@
 	<div class="container">
 		<br><br>
 		<form method="post">
-			Please enter a word: <input type="text" name="word" class="form-control" required="required" maxlength="8"/>
+			Please enter a word <input type="text" name="word" class="form-control" required="required" maxlength="8"/>
 		<input type="submit">
 		</form>
 	</div>
