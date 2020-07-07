@@ -5,4 +5,4 @@ A web app for serching anagrams for a given word. It uses an embedded English di
 
 Artichecture diagram:
 
-![anagramAppDiagram](https://user-images.githubusercontent.com/36462985/86826504-d9196380-c05e-11ea-8e58-36ad0c086cd1.png)
+![anagramArchDiagram](https://user-images.githubusercontent.com/36462985/86835100-a45ed980-c069-11ea-8bed-76f720db4865.png)
