@@ -13,7 +13,7 @@ import com.zubayer.webapp.anagram.service.AnagramService;
 class AnagramServiceTest {
 
 	@Test
-	@DisplayName("Anagaram generation service test ")
+	@DisplayName("Anagaram generation service test - no match found ")
 	void testGetAnagramWhenNoAnagramIsFound() throws Exception {		   
 		
 		AnagramService anagramServices= new AnagramService();
@@ -25,13 +25,25 @@ class AnagramServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Anagaram generation service test ")
-	void testGetAnagramWhenWhenMatchedWithExpectedOutput() throws Exception {
+	@DisplayName("Anagaram generation service test - matches found")
+	void testGetAnagramWhenMatchedWithExpectedOutput() throws Exception {
 		   AnagramService anagramServices= new AnagramService();
 
 		String word = "pool";
 
 		List<String> anagrams = anagramServices.findAnagrams(word);
-		assertNotEquals(anagrams, Arrays.asList("polo", "loop"));
+		assertEquals(anagrams, Arrays.asList("loop"));
 	}
+	
+	@Test
+	@DisplayName("Anagaram generation service test - Uppercase")
+	void testGetAnagramWhenSearchTermIsUpperCase() throws Exception {
+		   AnagramService anagramServices= new AnagramService();
+
+		   String word = "Pool";
+
+		List<String> anagrams = anagramServices.findAnagrams(word);
+		assertEquals(anagrams, Arrays.asList("pool", "loop"));
+	}
+	
 }
