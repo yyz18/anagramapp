@@ -11,7 +11,7 @@
 <body>
 	<div class="container" style="width: 500px;padding-top: 100px">
 		<form method="post">
-			Please enter a word 
+			Welcome to Anagram Finder app. Please enter a word 
 			<div style="padding-top: 5px">	
 				<input type="text" name="word" class="form-control" required="required" minlength="2" maxlength="8"/>
 			</div>
