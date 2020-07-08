@@ -20,6 +20,6 @@ The app is designed following the MVC framework. AnagramController accepts a req
 A couple of unit testings are included in the repository. It checks for a valid return of anagrams and a no match found outcome.
 
 <h4> Input Validation </h4>
-Client side validation enforces a word with a minimum of 2 and maximum of 8 characters to be entered. No space is allowed.
+Client side validation enforces a word with a minimum of 2 and maximum of 8 characters to be entered.
 
 
