@@ -12,13 +12,8 @@
 <body>
 	<div class="container" style="width: 500px;padding-top: 100px">
 					
+		The anagrams of <strong> ${word} </strong>
 		<table class="table table-striped">
-				
-			<thead>
-				<tr>
-					<th>The anagrams of ${word} </th>
-				</tr>
-			</thead>
 				
 			<tbody>
 				<c:forEach items="${result}" var="item">
