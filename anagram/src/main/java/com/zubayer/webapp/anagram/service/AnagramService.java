@@ -42,7 +42,7 @@ public class AnagramService {
 		}
 
 		//Find all permutations of the word
-		permutation("", word);
+		permutation("", word.toLowerCase());
 		permutationWords.remove(word);
 
 		//Check if the permutation word exists in the English word map
